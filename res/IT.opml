@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+	<head>
+		<dateCreated>Wed Mar 04 2020 23:12:49 GMT+0100 (罗马标准时间)</dateCreated>
+		<dateModified>Wed Mar 04 2020 23:12:49 GMT+0100 (罗马标准时间)</dateModified>
+	</head>
+	<body>
+		<outline text="IT">
+			<outline text="计算机三大件">
+				<outline text="存储"></outline>
+				<outline text="IO"></outline>
+				<outline text="CPU"></outline>
+			</outline>
+			<outline text="计算">
+				<outline text="数据与算法"></outline>
+				<outline text="状态与转移函数"></outline>
+				<outline text="应用分类">
+					<outline text="计算密集型应用"></outline>
+					<outline text="数据密集型应用"></outline>
+				</outline>
+				<outline text="创造性">
+					<outline text="数据模型"></outline>
+					<outline text="数据流设计"></outline>
+				</outline>
+				<outline text="实际生产">
+					<outline text="数据表就是数据结构"></outline>
+					<outline text="索引与查询就是算法"></outline>
+					<outline text="应用代码往往扮演的是胶水的角色">
+						<outline text="处理IO与业务逻辑"></outline>
+						<outline text="其他大部分工作都是在数据系统之间搬运数据"></outline>
+					</outline>
+				</outline>
+			</outline>
+			<outline text="抽象">
+				<outline text="操作系统提供了对存储的基本抽象">
+					<outline text="内存寻址空间"></outline>
+					<outline text="磁盘逻辑块号"></outline>
+				</outline>
+				<outline text="文件系统提供了文件名到地址空间的KV存储抽象"></outline>
+				<outline text="数据库提供了对应用通用存储需求的高级抽象"></outline>
+			</outline>
+			<outline text="领域">
+				<outline text="数据库">
+					<outline text="有状态的地方就有数据库">
+						<outline text="网站的背后"></outline>
+						<outline text="应用的内部"></outline>
+						<outline text="单机软件"></outline>
+						<outline text="区块链"></outline>
+						<outline text="Web浏览器中">
+							<outline text="各类状态管理框架"></outline>
+							<outline text="本地存储"></outline>
+						</outline>
+					</outline>
+					<outline text="分类
+关系型数据库只是数据系统的冰山一角（或者说冰山之巅）">
+						<outline text="数据库：存储数据，以便自己或其他应用程序之后能再次找到（PostgreSQL，MySQL，Oracle）">
+							<outline text="关系型数据库"></outline>
+						</outline>
+						<outline text="缓存：记住开销昂贵操作的结果，加快读取速度（Redis，Memcached）"></outline>
+						<outline text="搜索索引：允许用户按关键字搜索数据，或以各种方式对数据进行过滤（ElasticSearch）"></outline>
+						<outline text="流处理：向其他进程发送消息，进行异步处理（Kafka，Flink，Storm）"></outline>
+						<outline text="批处理：定期处理累积的大批量数据（Hadoop）"></outline>
+					</outline>
+					<outline text="架构师">
+						<outline text="职能">
+							<outline text="了解这些组件的性能特点与应用场景"></outline>
+							<outline text="灵活地权衡取舍"></outline>
+							<outline text="集成拼接这些数据系统"></outline>
+						</outline>
+						<outline text="挑战">
+							<outline text="软硬件故障把数据搞成一团浆糊（可靠性）"></outline>
+							<outline text="状态太多而内存太小放不下（可伸缩性）"></outline>
+							<outline text="并发访问控制导致代码复杂度发生爆炸（可维护性）"></outline>
+						</outline>
+						<outline text="分拆:架构演化的重要方法论">
+							<outline text="状态与计算相分离： 数据库将状态管理的职能从应用程序中分拆出来"></outline>
+							<outline text="问题比方法更重要: 每个系统都服务于一个目的，解决一类问题"></outline>
+						</outline>
+						<outline text="理解原理">
+							<outline text="设计系统时以最少的复杂度代价写出更可靠高效的代码"></outline>
+							<outline text="排查疑难杂症时带来精准的直觉与深刻的洞察"></outline>
+						</outline>
+					</outline>
+					<outline text="原理">
+						<outline text="存储引擎原理（基础）"></outline>
+						<outline text="数据模型设计原理（应用）
+就是生产中的数据结构设计
+为了把事情做漂亮（可维护）">
+							<outline text="范式理论: 为了解决数据冗余">
+								<outline text="冗余度">
+									<outline text="冗余少则复杂度小/可维护性强"></outline>
+									<outline text="冗余高则性能好"></outline>
+								</outline>
+								<outline text="冗余字段能加快特定类型的读取（通过消除连接），但在写入时就需要做更多的工作：维护多对象副本间的一致性，避免多对象事务并发执行时发生踩踏"></outline>
+							</outline>
+						</outline>
+						<outline text="索引与查询优化器的原理（性能）
+关系代数
+为了把事情做得快（性能，可扩展）">
+							<outline text="R树索引 GIST索引"></outline>
+						</outline>
+						<outline text="事务与并发控制的原理（正确性）
+为了把事情做正确">
+							<outline text="事务是数据处理领域最伟大的抽象之一
+提供了很多有用的保证（ACID）"></outline>
+							<outline text="原子性: 提交前能随时中止事务并丢弃所有写入"></outline>
+							<outline text="持久性: 承诺一旦事务成功提交，即使发生硬件故障或数据库崩溃，写入的任何数据也不会丢失"></outline>
+							<outline text="隔离性:保证同时执行的事务无法相互影响（在可序列化隔离等级下）"></outline>
+						</outline>
+						<outline text="故障恢复与复制系统的原理（可靠性）">
+							<outline text="高可用"></outline>
+							<outline text="核心技术其实就是复制（Replication）（或再加上自动故障切换（Failover））"></outline>
+						</outline>
+					</outline>
+				</outline>
+				<outline text="操作系统"></outline>
+				<outline text="计算机网络"></outline>
+				<outline text="离散数学"></outline>
+				<outline text="数字电路"></outline>
+				<outline text="体系结构"></outline>
+				<outline text="数据结构/算法(基础)"></outline>
+				<outline text="编译原理"></outline>
+				<outline text="编程思想">
+					<outline text="面向过程"></outline>
+					<outline text="面向对象">
+						<outline text="现实时间的各种关系映射到计算机里"></outline>
+						<outline text="代码组织的方式"></outline>
+					</outline>
+				</outline>
+			</outline>
+			<outline text="语言">
+				<outline text="python">
+					<outline text="Python 之禅"></outline>
+					<outline text="特点">
+						<outline text="易于上手 难于精通"></outline>
+						<outline text="既有动态脚本的特性，又有面向对象的特点"></outline>
+						<outline text="相对于C C++ java慢">
+							<outline text="编译型">
+								<outline text="C"></outline>
+								<outline text="C++"></outline>
+							</outline>
+							<outline text="解释型">
+								<outline text="JS"></outline>
+								<outline text="python"></outline>
+							</outline>
+							<outline text="中间代码">
+								<outline text="Java"></outline>
+								<outline text=" C#"></outline>
+							</outline>
+						</outline>
+						<outline text="开发效率和运行效率"></outline>
+					</outline>
+					<outline text="用途">
+						<outline text="爬虫"></outline>
+						<outline text="大数据Spark"></outline>
+						<outline text="自动化运维测试"></outline>
+						<outline text="web开发"></outline>
+						<outline text="机器学习"></outline>
+						<outline text="胶水语言"></outline>
+					</outline>
+					<outline text="基础语法">
+						<outline text="number
+值类型，只读的不可变的">
+							<outline text="type(2//2) -&gt; int  // 整除"></outline>
+							<outline text="进制转换">
+								<outline text="0b">
+									<outline text="bin()"></outline>
+								</outline>
+								<outline text="0o">
+									<outline text="oct()"></outline>
+								</outline>
+								<outline text="0x">
+									<outline text="hex()"></outline>
+								</outline>
+								<outline text="demical">
+									<outline text="int()"></outline>
+								</outline>
+							</outline>
+							<outline text="bool">
+								<outline text="bool()"></outline>
+								<outline text="False">
+									<outline text="None"></outline>
+									<outline text="&apos;&apos;"></outline>
+									<outline text="{}"></outline>
+									<outline text="[]"></outline>
+									<outline text="0"></outline>
+								</outline>
+							</outline>
+							<outline text="complex">
+								<outline text="j"></outline>
+							</outline>
+						</outline>
+						<outline text="序列(组)">
+							<outline text="字符串 str
+值类型，只读的不可变的">
+								<outline text="不可变类型"></outline>
+								<outline text="&apos;"></outline>
+								<outline text="&quot;"></outline>
+								<outline text="&apos;&apos;&apos;  &quot;&quot;&quot; 多行字符"></outline>
+								<outline text="r"></outline>
+								<outline text="操作">
+									<outline text="+"></outline>
+									<outline text="*3"></outline>
+									<outline text="[0:4] 4不包括"></outline>
+									<outline text="[4:1000]"></outline>
+								</outline>
+								<outline text="ord(): 返回ascii值"></outline>
+							</outline>
+							<outline text="tuple 元组: ()
+值类型，只读的不可变的">
+								<outline text="只读的不可变的">
+									<outline text="(1,2,[3,5,8])
+嵌套拆分可变不可变部分"></outline>
+								</outline>
+								<outline text="定义只有一个元素: (1,)"></outline>
+								<outline text="定义空: ()"></outline>
+							</outline>
+							<outline text="list: []
+引用类型，可变">
+								<outline text="元素类型多种"></outline>
+							</outline>
+							<outline text="共有操作">
+								<outline text="序号引用[index]"></outline>
+								<outline text="切片: [0:8:2]"></outline>
+								<outline text="+"></outline>
+								<outline text="*"></outline>
+								<outline text="in"></outline>
+								<outline text="len()"></outline>
+								<outline text="max() / min()">
+									<outline text="字符串编码高低"></outline>
+								</outline>
+							</outline>
+						</outline>
+						<outline text="无序列(组)
+引用类型，可变">
+							<outline text="集合set: {}">
+								<outline text="元素不重复"></outline>
+								<outline text="差集 -"></outline>
+								<outline text="交集 &amp;"></outline>
+								<outline text="并集 |"></outline>
+								<outline text="空集合: set()"></outline>
+							</outline>
+							<outline text="字典dict: {key:value}">
+								<outline text="key不重复, 值或者类型"></outline>
+								<outline text="key必须是不可变类型"></outline>
+							</outline>
+						</outline>
+						<outline text="运算">
+							<outline text="算数运算">
+								<outline text="+  "></outline>
+								<outline text="-  "></outline>
+								<outline text="*  "></outline>
+								<outline text="/  "></outline>
+								<outline text="//  "></outline>
+								<outline text="%  "></outline>
+								<outline text="**"></outline>
+							</outline>
+							<outline text="赋值运算符号">
+								<outline text="="></outline>
+								<outline text="+="></outline>
+								<outline text="*="></outline>
+								<outline text="-="></outline>
+								<outline text="/="></outline>
+								<outline text="%="></outline>
+								<outline text="**="></outline>
+								<outline text="//="></outline>
+							</outline>
+							<outline text="关系运算符">
+								<outline text="&gt; &lt; != =="></outline>
+								<outline text="从左到右逐个比较">
+									<outline text="&quot;adc&quot;&gt;&quot;acb&quot;"></outline>
+									<outline text="[1,2,3]&lt;[2,4,5]"></outline>
+								</outline>
+								<outline text="类型">
+									<outline text="type(a)==int">
+										<outline text="不能判断子类型"></outline>
+									</outline>
+									<outline text="isinstance(a,int)"></outline>
+									<outline text="isinstance(a,(int,str))"></outline>
+								</outline>
+							</outline>
+							<outline text="逻辑运算">
+								<outline text="and or not"></outline>
+								<outline text="最少计算原则"></outline>
+							</outline>
+							<outline text="成员运算">
+								<outline text="in"></outline>
+								<outline text="字典查找的是key值"></outline>
+							</outline>
+							<outline text="身份运算">
+								<outline text="is"></outline>
+								<outline text="判断身份id是否相等: 内存地址"></outline>
+								<outline text="不但判断值 还判断类型"></outline>
+							</outline>
+							<outline text="位运算">
+								<outline text="&amp;按位与  |按位或  ^按位异或  ~按位取反  &lt;&lt;左移  &gt;&gt;右移"></outline>
+								<outline text="转换成二进制再计算"></outline>
+							</outline>
+							<outline text="优先级">
+								<outline text="**	指数 (最高优先级)"></outline>
+								<outline text="~ + -	按位翻转, 一元加号和减号 (最后两个的方法名为 +@ 和 -@)"></outline>
+								<outline text="* / % //	乘，除，取模和取整除"></outline>
+								<outline text="+ -	加法减法"></outline>
+								<outline text="&gt;&gt; &lt;&lt;	右移，左移运算符"></outline>
+								<outline text="&amp;	位 &apos;AND&apos;"></outline>
+								<outline text="^ |	位运算符"></outline>
+								<outline text="&lt;= &lt; &gt; &gt;=	比较运算符"></outline>
+								<outline text="&lt;&gt; == !=	等于运算符"></outline>
+								<outline text="=  %=   /=   //=   -=   +=   *=   **=	赋值运算符"></outline>
+								<outline text="is      is not	身份运算符"></outline>
+								<outline text="in    not in	成员运算符"></outline>
+								<outline text="逻辑运算符">
+									<outline text="not 	"></outline>
+									<outline text="and "></outline>
+									<outline text="or"></outline>
+								</outline>
+							</outline>
+						</outline>
+						<outline text="表达式Expression">
+							<outline text="运算符operator和操作数operand所构成的序列"></outline>
+						</outline>
+						<outline text="流程控制">
+							<outline text="条件">
+								<outline text="if"></outline>
+							</outline>
+							<outline text="循环">
+								<outline text="while ... else">
+									<outline text="递归"></outline>
+								</outline>
+								<outline text="for ... else">
+									<outline text="遍历 序列 集合 字典"></outline>
+									<outline text="break 之后不执行 else"></outline>
+									<outline text="range(0,10偏移量,2)"></outline>
+									<outline text="切片a[0:len(a):3]"></outline>
+								</outline>
+							</outline>
+						</outline>
+					</outline>
+					<outline text="进阶">
+						<outline text="高性能"></outline>
+						<outline text="封装性好(可复用性)"></outline>
+						<outline text="抽象能力"></outline>
+					</outline>
+					<outline text="python项目的组织结构">
+						<outline text="包">
+							<outline text="多个模块">
+								<outline text="多个类 Class">
+									<outline text="特性">
+										<outline text="函数">
+											<outline text="用途">
+												<outline text="功能性"></outline>
+												<outline text="隐藏细节"></outline>
+												<outline text="复用"></outline>
+											</outline>
+											<outline text="定义">
+												<outline text="def"></outline>
+												<outline text="return ">
+													<outline text="Value/None"></outline>
+													<outline text="多个值 ">
+														<outline text="return a,b    元组"></outline>
+														<outline text="避免依靠序号获取值">
+															<outline text="序列解包: a,b =func()">
+																<outline text="a,b,c=1,2,3"></outline>
+																<outline text="a=b=c=1"></outline>
+															</outline>
+														</outline>
+													</outline>
+												</outline>
+												<outline text="递归次数最大限制默认(995)">
+													<outline text="sys.setrecursionlimt(10000)"></outline>
+												</outline>
+											</outline>
+											<outline text="参数">
+												<outline text="必须参数">
+													<outline text="形式参数"></outline>
+													<outline text="实际参数"></outline>
+												</outline>
+												<outline text="关键字参数">
+													<outline text="调用的时候指定形参赋值"></outline>
+												</outline>
+												<outline text="默认参数">
+													<outline text="置后"></outline>
+												</outline>
+												<outline text="可变参数函数">
+													<outline text="*args">
+														<outline text="数组参数"></outline>
+														<outline text="匹配完定义好的参数，剩余的参数以元组的形式存储在 args（args 名称你可以自行定义）"></outline>
+													</outline>
+													<outline text="**kwargs">
+														<outline text="字典参数"></outline>
+														<outline text="参数在函数内部将被存放在以形式名为标识符的 dictionary 中，这时调用函数的方法则需要采用 arg1=value1,arg2=value2 这样的形式"></outline>
+														<outline text="dict是传入参数的一份拷贝"></outline>
+													</outline>
+													<outline text="注意">
+														<outline text="采用 **kwargs 传递参数的时候，你不能传递数组参数"></outline>
+														<outline text="db_conf = {user=&apos;xx&apos;,password=&apos;yy&apos;, host=&apos;xxx.xxx.xxx.xxx&apos;,database=&apos;zz&apos;}
+cnx = mysql.connector.connect(**db_conf)"></outline>
+													</outline>
+												</outline>
+											</outline>
+										</outline>
+										<outline text="变量
+(指针指向)">
+											<outline text="命名可读性强"></outline>
+											<outline text="字母数字下划线">
+												<outline text="_2"></outline>
+											</outline>
+											<outline text="不可变传值
+可变传址"></outline>
+											<outline text="hex(id()):  获取内存地址"></outline>
+										</outline>
+									</outline>
+								</outline>
+								<outline text="物理存在: py文件"></outline>
+								<outline text="文件名"></outline>
+								<outline text="提取公用的部分为单独模块"></outline>
+								<outline text="模块导入">
+									<outline text="import &lt;命名空间.模块名&gt; as &lt;简化名&gt;
+import c7">
+										<outline text="通过命名空间引用
+c7.a"></outline>
+										<outline text="不能直接使用模块下的变量"></outline>
+									</outline>
+									<outline text="from &lt;命名空间.模块名&gt; import &lt;函数/变量/*&gt;">
+										<outline text="直接使用"></outline>
+										<outline text="__all__=[可以导入的变量]"></outline>
+									</outline>
+									<outline text="导入模块时会执行所有代码"></outline>
+								</outline>
+							</outline>
+							<outline text="物理存在: 文件夹"></outline>
+							<outline text="文件夹名字为包名"></outline>
+							<outline text="__init__.py : 包的定义">
+								<outline text="也是模块"></outline>
+								<outline text="该模块的名字就是父文件夹的名字"></outline>
+								<outline text="执行时机">
+									<outline text="包被导入"></outline>
+									<outline text="包内的模块被导入"></outline>
+									<outline text="--&gt; 模块初始化"></outline>
+								</outline>
+								<outline text="__all__ 指定哪些模块可以被导入"></outline>
+							</outline>
+						</outline>
+						<outline text="命名空间: 路径"></outline>
+						<outline text="常见错误">
+							<outline text="包和模块是不会被重复导入的"></outline>
+							<outline text="避免循环导入"></outline>
+						</outline>
+					</outline>
+					<outline text="面向对象">
+						<outline text="对象的三个特征">
+							<outline text="value">
+								<outline text="=="></outline>
+							</outline>
+							<outline text="id">
+								<outline text="is"></outline>
+							</outline>
+							<outline text="type">
+								<outline text="isinstance"></outline>
+							</outline>
+						</outline>
+						<outline text="类!=面向对象"></outline>
+						<outline text="类class">
+							<outline text="作用: 封装"></outline>
+							<outline text="现实世界或思维世界中的实体在计算机中的映射
+封装数据及其操作"></outline>
+							<outline text="首字母大写"></outline>
+							<outline text="内部">
+								<outline text="定义数据成员（特征）"></outline>
+								<outline text="定义方法（行为）">
+									<outline text="设计层面的称谓，函数是运行、过程式的称谓"></outline>
+								</outline>
+								<outline text="对应主体"></outline>
+							</outline>
+							<outline text="只描述定义，不执行"></outline>
+							<outline text="构造函数  __init__(self)">
+								<outline text="不能返回非None值"></outline>
+								<outline text="生成不同的对象"></outline>
+								<outline text="初始化对象的属性"></outline>
+							</outline>
+							<outline text="类方法">
+								<outline text="@classmethod"></outline>
+								<outline text="操作类变量"></outline>
+								<outline text="cls"></outline>
+							</outline>
+							<outline text="类变量">
+								<outline text="访问优先级低"></outline>
+								<outline text="访问方法">
+									<outline text="类内部">
+										<outline text="self.__class__.类变量"></outline>
+										<outline text="className.类变量"></outline>
+									</outline>
+									<outline text="类外部">
+										<outline text="className.类变量"></outline>
+									</outline>
+								</outline>
+							</outline>
+						</outline>
+						<outline text="对象实例">
+							<outline text="实例变量">
+								<outline text="访问优先级高"></outline>
+								<outline text="实例名.__dict__ 可获取所有实例变量"></outline>
+							</outline>
+							<outline text="实例方法">
+								<outline text="self">
+									<outline text="可重命名"></outline>
+									<outline text="代表实例主体"></outline>
+									<outline text="显胜于隐"></outline>
+								</outline>
+								<outline text="操作实例变量"></outline>
+							</outline>
+							<outline text="可以调用类方法"></outline>
+						</outline>
+					</outline>
+					<outline text="备注">
+						<outline text="每行少于80个字符">
+							<outline text="换行方法">
+								<outline text="\"></outline>
+								<outline text="()"></outline>
+							</outline>
+						</outline>
+						<outline text="pass 占位"></outline>
+						<outline text="代码块"></outline>
+						<outline text="print( ,end=&apos;&apos;)"></outline>
+						<outline text="round(a,2)"></outline>
+						<outline text="序列解包"></outline>
+					</outline>
+					<outline text="误区"></outline>
+					<outline text="vscode">
+						<outline text="files.exclude"></outline>
+					</outline>
+				</outline>
+			</outline>
+			<outline text="人工智能">
+				<outline text="机器学习">
+					<outline text="表示学习(representation learning)
+特征学习(feature learning)" _note="通过不同种类基本操作层的“堆叠”将原始数据表示（raw data representation）不经任何人为干预直接映射为高层语义表示（high-level semantic representation）并实现向任务目标映射的过程">
+						<outline text="样本特征表示未知
+端到端学习(end-to-end manner)">
+							<outline text="深度学习DBN
+Deep belief Network">
+								<outline text="神经网络">
+									<outline text="卷积Convolutional Neural Network(CNN)" _note="模型的训练过程可以简单抽&#10;象为原始数据向最终目标的直接“拟合”，而中间的这些部件正起到了将原始&#10;数据映射为特征（即特征学习）随后再映射为样本标记（即目标任务，如分类）&#10;的作用">
+										<outline text="前馈运算feed-forward">
+											<outline text="卷积层"></outline>
+											<outline text="汇合层"></outline>
+											<outline text="得到目标函数objective/cost/loss function">
+												<outline text="数据损失data loss"></outline>
+												<outline text="模型参数的正则化损失 regularization loss"></outline>
+											</outline>
+										</outline>
+										<outline text="反馈运算">
+											<outline text="计算损失loss"></outline>
+											<outline text="反向传播算法error back-propagation algo"></outline>
+											<outline text="随机梯度下降法 Stochastic Gradient Descent (SGD)"></outline>
+										</outline>
+									</outline>
+									<outline text="循环神经网络 Recurrent Neural Network (RNN)">
+										<outline text="长短期记忆（Long short-term memory, LSTM）是一种特殊的RNN">
+											<outline text="为了解决长序列训练过程中的问题">
+												<outline text="梯度消失"></outline>
+												<outline text="梯度爆炸"></outline>
+											</outline>
+										</outline>
+									</outline>
+									<outline text="Multi Layer  MLP"></outline>
+									<outline text="boltzmann machine"></outline>
+								</outline>
+							</outline>
+						</outline>
+						<outline text="样本特征表示已知
+人工特征">
+							<outline text="特征选择算法"></outline>
+							<outline text="分类器"></outline>
+							<outline text="集成学习"></outline>
+						</outline>
+					</outline>
+					<outline text="特征工程 Feature engineering">
+						<outline text="数据挖掘的工业界应用"></outline>
+						<outline text="计算机视觉应用"></outline>
+						<outline text="特征描述子">
+							<outline text="全局特征描述子"></outline>
+							<outline text="局部特征描述子"></outline>
+						</outline>
+					</outline>
+					<outline text="迁移学习 (Transfer Learning)"></outline>
+				</outline>
+			</outline>
+		</outline>
+		<outline text="XMind: ZEN - Trial Version"></outline>
+	</body>
+</opml>
