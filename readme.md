@@ -1,5 +1,5 @@
 # IT mindmap
 
-![](res/IT0304.png)
+![](res/IT.png)
 
 [text format (updated 03042020)](res/IT0304.md)
