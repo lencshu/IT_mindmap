@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opml version="1.0">
 	<head>
-		<dateCreated>Thu Mar 12 2020 00:24:10 GMT+0100 (罗马标准时间)</dateCreated>
-		<dateModified>Thu Mar 12 2020 00:24:10 GMT+0100 (罗马标准时间)</dateModified>
+		<dateCreated>Thu Mar 12 2020 10:51:19 GMT+0100 (Paris, Madrid)</dateCreated>
+		<dateModified>Thu Mar 12 2020 10:51:19 GMT+0100 (Paris, Madrid)</dateModified>
 	</head>
 	<body>
 		<outline text="IT">
@@ -1072,24 +1072,20 @@ c7.a"></outline>
 							<outline text="python中 以双下划线开头和结尾的自定义的"></outline>
 							<outline text="为了增强类的特性"></outline>
 						</outline>
-						<outline text="迭代属性:  ">
-							<outline text="__iter__"></outline>
-							<outline text="序列类型">
-								<outline text="__getitem__
-return self.employee[item]">
-									<outline text="for循环: for i in className"></outline>
-								</outline>
-							</outline>
-						</outline>
 						<outline text="数据模型及其影响">
 							<outline text="赋予类某些内置类型的特性"></outline>
 						</outline>
 						<outline text="函数调用顺序">
 							<outline text="for">
-								<outline text="__iter__"></outline>
-								<outline text="__getitem__"></outline>
+								<outline text="迭代属性: __iter__"></outline>
+								<outline text="__getitem__">
+									<outline text="__getitem__
+return self.employee[item]">
+										<outline text="for循环: for i in className"></outline>
+									</outline>
+								</outline>
 							</outline>
-							<outline text="len">
+							<outline text="len( )">
 								<outline text="__len__"></outline>
 								<outline text="__getitem__"></outline>
 							</outline>
@@ -1105,7 +1101,15 @@ return self.employee[item]">
 									</outline>
 								</outline>
 								<outline text="集合序列相关">
-									<outline text="__len__"></outline>
+									<outline text="__len__">
+										<outline text="len()判断原生结构用c语言实现
+效率高
+cpython 解释器直接读取长度">
+											<outline text="list"></outline>
+											<outline text="set"></outline>
+											<outline text="dict"></outline>
+										</outline>
+									</outline>
 									<outline text="__getitem__"></outline>
 									<outline text="__setitem__"></outline>
 									<outline text="__delitem__"></outline>
@@ -1184,23 +1188,40 @@ xor__ ^"></outline>
 							</outline>
 						</outline>
 					</outline>
-					<outline text="第四章 深入类和对象">
-						<outline text="4.1 鸭子类型和多态"></outline>
-						<outline text="4.2 抽象基类(abc模块)"></outline>
-						<outline text="4.3 使用isintance而不是type"></outline>
-						<outline text="4.4 类变量和对象变量"></outline>
-						<outline text="4.5 类属性和实例属性以及查找顺序"></outline>
-						<outline text="4.6 静态方法、类方法以及对象方法"></outline>
-						<outline text="4.7 数据封装和私有属性"></outline>
-						<outline text="4.8 python对象的自省机制"></outline>
-						<outline text="4.9 super函数"></outline>
-						<outline text="4.10 django rest framework中对多继承使用的经验"></outline>
-						<outline text="4.11 python中的with语句"></outline>
-						<outline text="4.12 contextlib实现上下文管理器"></outline>
-						<outline text="4.13 本章小结"></outline>
+					<outline text="深入类和对象">
+						<outline text="鸭子类型和多态">
+							<outline text="概念">
+								<outline text="三段论"></outline>
+								<outline text="动态类型"></outline>
+								<outline text="多个类用同名的方法"></outline>
+								<outline text="类比静态语言">
+									<outline text="ParentClassName variableName = ChildClassName()"></outline>
+								</outline>
+							</outline>
+							<outline text="extende">
+								<outline text="针对任何可迭代的类型">
+									<outline text="生成器"></outline>
+									<outline text="序列"></outline>
+									<outline text="可迭代的类"></outline>
+								</outline>
+								<outline text="a.extend(b)"></outline>
+							</outline>
+						</outline>
+						<outline text="抽象基类(abc模块)"></outline>
+						<outline text="使用isintance而不是type"></outline>
+						<outline text="类变量和对象变量"></outline>
+						<outline text="类属性和实例属性以及查找顺序"></outline>
+						<outline text="静态方法、类方法以及对象方法"></outline>
+						<outline text="数据封装和私有属性"></outline>
+						<outline text="python对象的自省机制"></outline>
+						<outline text="super函数"></outline>
+						<outline text="django rest framework中对多继承使用的经验"></outline>
+						<outline text="python中的with语句"></outline>
+						<outline text="contextlib实现上下文管理器"></outline>
+						<outline text="本章小结"></outline>
 					</outline>
-					<outline text="第五章 自定义序列类">
-						<outline text="5.1 序列类型的分类">
+					<outline text="自定义序列类">
+						<outline text="序列类型的分类">
 							<outline text="容器序列">
 								<outline text="list、tuple、deque"></outline>
 							</outline>
@@ -1214,45 +1235,45 @@ xor__ ^"></outline>
 								<outline text="str、tuple、bytes"></outline>
 							</outline>
 						</outline>
-						<outline text="5.2 序列的abc继承关系"></outline>
-						<outline text="5.3 序列的+、+=和extend的区别"></outline>
-						<outline text="5.4 实现可切片的对象"></outline>
-						<outline text="5.5 bisect管理可排序序列"></outline>
-						<outline text="5.6 什么时候我们不该用列表"></outline>
-						<outline text="5.7 列表推导式、生成器表达式、字典推导式"></outline>
-						<outline text="5.8 本章小结"></outline>
+						<outline text="序列的abc继承关系"></outline>
+						<outline text="序列的+、+=和extend的区别"></outline>
+						<outline text="实现可切片的对象"></outline>
+						<outline text="bisect管理可排序序列"></outline>
+						<outline text="什么时候我们不该用列表"></outline>
+						<outline text="列表推导式、生成器表达式、字典推导式"></outline>
+						<outline text="本章小结"></outline>
 					</outline>
-					<outline text="第六章 深入python的set和dict">
-						<outline text="6.1 先来看看collections中的abc"></outline>
-						<outline text="6.2 dict的常见用法">
+					<outline text="深入python的set和dict">
+						<outline text="先来看看collections中的abc"></outline>
+						<outline text="dict的常见用法">
 							<outline text="setdefault"></outline>
 							<outline text="defaultdict"></outline>
 							<outline text="__missing__方法"></outline>
 						</outline>
-						<outline text="6.3 dict的子类">
+						<outline text="dict的子类">
 							<outline text="defaultdict"></outline>
 							<outline text="Counter"></outline>
 							<outline text="不要去继承内置类型， 有可能会失败比如update方法"></outline>
 						</outline>
-						<outline text="6.4 set和frozenset"></outline>
-						<outline text="6.5 dict和set实现原理"></outline>
-						<outline text="6.6 本章小结"></outline>
+						<outline text="set和frozenset"></outline>
+						<outline text="dict和set实现原理"></outline>
+						<outline text="本章小结"></outline>
 					</outline>
-					<outline text="第七章 对象引用、可变性和垃圾回收">
-						<outline text="7.1 python变量到底是什么"></outline>
-						<outline text="7.2 ==和is的区别"></outline>
-						<outline text="7.3 del语句和垃圾回收"></outline>
-						<outline text="7.4 一个经典的错误"></outline>
-						<outline text="7.5 本章小结"></outline>
+					<outline text="对象引用、可变性和垃圾回收">
+						<outline text="python变量到底是什么"></outline>
+						<outline text="==和is的区别"></outline>
+						<outline text="del语句和垃圾回收"></outline>
+						<outline text="一个经典的错误"></outline>
+						<outline text="本章小结"></outline>
 					</outline>
-					<outline text="第八章 元类编程">
-						<outline text="8.1 property动态属性"></outline>
-						<outline text="8.2 __getattr__、__getattribute__魔法函数"></outline>
-						<outline text="8.3 属性描述符和属性查找过程"></outline>
-						<outline text="8.4 __new__和__init__的区别"></outline>
-						<outline text="8.5 自定义元类"></outline>
-						<outline text="8.6 元类实现简单的orm"></outline>
-						<outline text="8.7 本章小结"></outline>
+					<outline text="元类编程">
+						<outline text="property动态属性"></outline>
+						<outline text="__getattr__、__getattribute__魔法函数"></outline>
+						<outline text="属性描述符和属性查找过程"></outline>
+						<outline text="__new__和__init__的区别"></outline>
+						<outline text="自定义元类"></outline>
+						<outline text="元类实现简单的orm"></outline>
+						<outline text="本章小结"></outline>
 					</outline>
 					<outline text="迭代器和生成器">
 						<outline text="迭代器">
@@ -1266,14 +1287,14 @@ xor__ ^"></outline>
 								<outline text="from collections.abc import Iterable, Iterator"></outline>
 								<outline text="class Iterable (metaclass=ABCMeta)"></outline>
 							</outline>
-							<outline text="9.1 python的迭代协议"></outline>
-							<outline text="9.2 什么是迭代器和可迭代对象"></outline>
-							<outline text="9.3 生成器函数使用"></outline>
-							<outline text="9.4 生成器的原理"></outline>
-							<outline text="9.5 通过UserList来看生成器的应用"></outline>
-							<outline text="9.6 生成器实现大文件读取"></outline>
-							<outline text="9.7 本章小结"></outline>
 						</outline>
+						<outline text="python的迭代协议"></outline>
+						<outline text="什么是迭代器和可迭代对象"></outline>
+						<outline text="生成器函数使用"></outline>
+						<outline text="生成器的原理"></outline>
+						<outline text="通过UserList来看生成器的应用"></outline>
+						<outline text="生成器实现大文件读取"></outline>
+						<outline text="本章小结"></outline>
 					</outline>
 					<outline text="socket编程">
 						<outline text="基础">
@@ -1346,37 +1367,37 @@ xor__ ^"></outline>
 						<outline text="10.3 socket实现聊天和多用户连接"></outline>
 						<outline text="10.4 socket模拟http请求"></outline>
 					</outline>
-					<outline text="第十一章 多线程、多进程和线程池编程">
-						<outline text="11.1 python中的GIL"></outline>
-						<outline text="11.2 python多线程编程"></outline>
-						<outline text="11.3 线程间通信-Queue"></outline>
-						<outline text="11.4 线程同步（Lock、RLock、Semaphores、Condition）"></outline>
-						<outline text="11.5 concurrent线程池编码"></outline>
-						<outline text="11.6 多进程编程-multiprocessing"></outline>
-						<outline text="11.7 进程间通信"></outline>
-						<outline text="11.8 本章小结"></outline>
+					<outline text="多线程、多进程和线程池编程">
+						<outline text="python中的GIL"></outline>
+						<outline text="python多线程编程"></outline>
+						<outline text="线程间通信-Queue"></outline>
+						<outline text="线程同步（Lock、RLock、Semaphores、Condition）"></outline>
+						<outline text="concurrent线程池编码"></outline>
+						<outline text="多进程编程-multiprocessing"></outline>
+						<outline text="进程间通信"></outline>
+						<outline text="本章小结"></outline>
 					</outline>
-					<outline text="第十二章 协程和异步io">
-						<outline text="12.1 并发、并行、同步、异步、阻塞、非阻塞"></outline>
-						<outline text="12.2 C10K问题和io多路复用(select、poll、epoll)"></outline>
-						<outline text="12.3 epoll+回调+事件循环方式url"></outline>
-						<outline text="12.4 回调之痛"></outline>
-						<outline text="12.5 C10M问题和协程"></outline>
-						<outline text="12.6 生成器的send和yield from"></outline>
-						<outline text="12.7 生成器如何变成协程？"></outline>
-						<outline text="12.8 async和await原生协程"></outline>
-						<outline text="12.9 本章小结"></outline>
+					<outline text="协程和异步io">
+						<outline text="并发、并行、同步、异步、阻塞、非阻塞"></outline>
+						<outline text="C10K问题和io多路复用(select、poll、epoll)"></outline>
+						<outline text="epoll+回调+事件循环方式url"></outline>
+						<outline text="回调之痛"></outline>
+						<outline text="C10M问题和协程"></outline>
+						<outline text="生成器的send和yield from"></outline>
+						<outline text="生成器如何变成协程？"></outline>
+						<outline text="async和await原生协程"></outline>
+						<outline text="本章小结"></outline>
 					</outline>
-					<outline text="第十三章 asyncio并发编程">
-						<outline text="13.1 事件循环"></outline>
-						<outline text="13.2 协程嵌套"></outline>
-						<outline text="13.3 call_soon、call_later、call_at、call_soon_threadsafe"></outline>
-						<outline text="13.4 ThreadPoolExecutor+asyncio"></outline>
-						<outline text="13.5 asyncio模拟http请求"></outline>
-						<outline text="13.6 future和task"></outline>
-						<outline text="13.7 asyncio同步和通信"></outline>
-						<outline text="13.8 aiohttp实现高并发爬虫"></outline>
-						<outline text="13.9 本章小结"></outline>
+					<outline text="asyncio并发编程">
+						<outline text="事件循环"></outline>
+						<outline text="协程嵌套"></outline>
+						<outline text="call_soon、call_later、call_at、call_soon_threadsafe"></outline>
+						<outline text="ThreadPoolExecutor+asyncio"></outline>
+						<outline text="asyncio模拟http请求"></outline>
+						<outline text="future和task"></outline>
+						<outline text="asyncio同步和通信"></outline>
+						<outline text="aiohttp实现高并发爬虫"></outline>
+						<outline text="本章小结"></outline>
 					</outline>
 				</outline>
 				<outline text="备注">
