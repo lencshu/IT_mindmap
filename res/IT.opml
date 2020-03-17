@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opml version="1.0">
 	<head>
-		<dateCreated>Thu Mar 12 2020 10:51:19 GMT+0100 (Paris, Madrid)</dateCreated>
-		<dateModified>Thu Mar 12 2020 10:51:19 GMT+0100 (Paris, Madrid)</dateModified>
+		<dateCreated>Tue Mar 17 2020 23:44:20 GMT+0100 (罗马标准时间)</dateCreated>
+		<dateModified>Tue Mar 17 2020 23:44:20 GMT+0100 (罗马标准时间)</dateModified>
 	</head>
 	<body>
 		<outline text="IT">
@@ -185,6 +185,7 @@ Deep belief Network">
 							</outline>
 							<outline text="定义只有一个元素: (1,)"></outline>
 							<outline text="定义空: ()"></outline>
+							<outline text="可以用来拆包"></outline>
 						</outline>
 						<outline text="list: []
 引用类型，可变">
@@ -1192,11 +1193,13 @@ xor__ ^"></outline>
 						<outline text="鸭子类型和多态">
 							<outline text="概念">
 								<outline text="三段论"></outline>
-								<outline text="动态类型"></outline>
+								<outline text="动态类型 变量不固定类型"></outline>
 								<outline text="多个类用同名的方法"></outline>
 								<outline text="类比静态语言">
 									<outline text="ParentClassName variableName = ChildClassName()"></outline>
 								</outline>
+								<outline text="有某种类方法就能实现某种功能"></outline>
+								<outline text="无法做类型检查"></outline>
 							</outline>
 							<outline text="extende">
 								<outline text="针对任何可迭代的类型">
@@ -1206,27 +1209,240 @@ xor__ ^"></outline>
 								</outline>
 								<outline text="a.extend(b)"></outline>
 							</outline>
+							<outline text="魔法函数+鸭子类型=动态协议">
+								<outline text="鸭子类型是根本"></outline>
+							</outline>
 						</outline>
-						<outline text="抽象基类(abc模块)"></outline>
-						<outline text="使用isintance而不是type"></outline>
-						<outline text="类变量和对象变量"></outline>
-						<outline text="类属性和实例属性以及查找顺序"></outline>
-						<outline text="静态方法、类方法以及对象方法"></outline>
-						<outline text="数据封装和私有属性"></outline>
-						<outline text="python对象的自省机制"></outline>
-						<outline text="super函数"></outline>
-						<outline text="django rest framework中对多继承使用的经验"></outline>
-						<outline text="python中的with语句"></outline>
-						<outline text="contextlib实现上下文管理器"></outline>
-						<outline text="本章小结"></outline>
+						<outline text="抽象基类(abc模块)">
+							<outline text="概念">
+								<outline text="abstract base class">
+									<outline text="子类必须要覆盖abc类的方法"></outline>
+									<outline text="无法实例化"></outline>
+								</outline>
+								<outline text="类似java 里面的接口  继承多个接口"></outline>
+								<outline text="用途">
+									<outline text="isinstance"></outline>
+									<outline text="接口的强制规定"></outline>
+								</outline>
+								<outline text="缺点">
+									<outline text="容易设计过度 不易理解"></outline>
+									<outline text="尽量利用鸭子类型"></outline>
+									<outline text="推荐用mixin"></outline>
+								</outline>
+							</outline>
+							<outline text="class Sized(metaclass=ABCMeta)">
+								<outline text="所有抽象基类的metaclass必须是ABCMeta"></outline>
+							</outline>
+							<outline text="应用场景">
+								<outline text="检查某个类是否有某个方法">
+									<outline text="hasattr( class , &quot;methodeName&quot;)"></outline>
+									<outline text="isinstance(class,type)">
+										<outline text="from collections.abc import Sized"></outline>
+									</outline>
+								</outline>
+								<outline text="强制某个子类实现某些方法">
+									<outline text="用例">
+										<outline text="实现web框架，集成cache(redis, cache, memorycache)"></outline>
+										<outline text="设计抽象子类，指定子类必须实现某些方法"></outline>
+									</outline>
+								</outline>
+							</outline>
+							<outline text="实现方法">
+								<outline text="调用时报错">
+									<outline text="方法里面 raise NotImplementedError"></outline>
+								</outline>
+								<outline text="初始化时报错">
+									<outline text="import abc
+class CacheBase(metaclass=abc.ABCMeta)
+@abc.abstractmethod"></outline>
+								</outline>
+							</outline>
+							<outline text="abc区别于collections.abc">
+								<outline text="abc"></outline>
+								<outline text="collections.abc">
+									<outline text="已经实现的抽象基类"></outline>
+									<outline text="[&quot;Awaitable&quot;, &quot;Coroutine&quot;,&quot;AsyncIterable&quot;, &quot;AsyncIterator&quot;, &quot;AsyncGenerator&quot;,&quot;Hashable&quot;, &quot;Iterable&quot;, &quot;Iterator&quot;, &quot;Generator&quot;, &quot;Reversible&quot;,&quot;Sized&quot;, &quot;Container&quot;, &quot;Callable&quot;, &quot;Collection&quot;,&quot;Set&quot;, &quot;MutableSet&quot;,&quot;Mapping&quot;, &quot;MutableMapping&quot;,&quot;MappingView&quot;, &quot;KeysView&quot;, &quot;ItemsView&quot;, &quot;ValuesView&quot;,&quot;Sequence&quot;, &quot;MutableSequence&quot;,&quot;ByteString&quot;,]">
+										<outline text="__subclasshook__">
+											<outline text="判断是类否有方法"></outline>
+										</outline>
+									</outline>
+								</outline>
+							</outline>
+						</outline>
+						<outline text="使用isintance而不是type">
+							<outline text="区别">
+								<outline text="isintance">
+									<outline text="检查继承类"></outline>
+								</outline>
+								<outline text="type">
+									<outline text="判断模板类">
+										<outline text="type(b) is B"></outline>
+									</outline>
+									<outline text="不能判断隔代继承"></outline>
+								</outline>
+							</outline>
+						</outline>
+						<outline text="类变量和对象变量">
+							<outline text="查询： 由下向上原则">
+								<outline text="先对象变量"></outline>
+								<outline text="后类变量"></outline>
+							</outline>
+							<outline text="赋值">
+								<outline text="创建新的对象变量">
+									<outline text="a.aa"></outline>
+									<outline text="A.aa"></outline>
+								</outline>
+							</outline>
+							<outline text="类变量: 所有对象共享"></outline>
+						</outline>
+						<outline text="类属性和实例属性以及查找顺序">
+							<outline text="类空间"></outline>
+							<outline text="实例空间">
+								<outline text="self."></outline>
+							</outline>
+							<outline text="多继承">
+								<outline text="class A(B,C)">
+									<outline text="A.__mro__">
+										<outline text="A"></outline>
+										<outline text="B"></outline>
+										<outline text="C"></outline>
+										<outline text="D(更高父类)"></outline>
+										<outline text="新式类object"></outline>
+									</outline>
+								</outline>
+								<outline text="MRO算法: method resolution order">
+									<outline text="py2.2之前"></outline>
+									<outline text="DFS深度优先搜索: deep first search"></outline>
+									<outline text="BFS广度优先算法"></outline>
+									<outline text="菱形继承缺陷"></outline>
+								</outline>
+								<outline text="C3算法"></outline>
+							</outline>
+						</outline>
+						<outline text="静态方法、类方法，对象方法以及参数">
+							<outline text="实例方法">
+								<outline text="self"></outline>
+							</outline>
+							<outline text="静态方法 @staticmethod">
+								<outline text="不需要self"></outline>
+								<outline text="硬编码">
+									<outline text="内部和外部调用的时候都必须要加ClassName. （进入命名空间）"></outline>
+								</outline>
+								<outline text="不需要调用主体的时候可以用"></outline>
+							</outline>
+							<outline text="类方法  @classmethod">
+								<outline text="cls"></outline>
+							</outline>
+						</outline>
+						<outline text="数据封装和私有属性">
+							<outline text="双下划线__封装私有属性和方法"></outline>
+							<outline text="_className__attr"></outline>
+							<outline text="python里面没有绝对安全">
+								<outline text="java反射机制同理"></outline>
+							</outline>
+						</outline>
+						<outline text="python对象的自省机制">
+							<outline text="通过一定的机制 查询到对象的内部结构"></outline>
+							<outline text="__dict__">
+								<outline text="查询属性"></outline>
+								<outline text="父类的属性查询不到"></outline>
+								<outline text="属性创建并赋值"></outline>
+							</outline>
+							<outline text="dir()">
+								<outline text="列出对象的所有属性"></outline>
+								<outline text="升级版的__dict__"></outline>
+								<outline text="只有属性名称没有值"></outline>
+							</outline>
+							<outline text="__doc__ 注释文档"></outline>
+						</outline>
+						<outline text="super函数">
+							<outline text="概念">
+								<outline text="非准确定义： 调用父类"></outline>
+								<outline text="调用C3继承树中上一级类">
+									<outline text="D.__mro__"></outline>
+								</outline>
+							</outline>
+							<outline text="super().__init__()"></outline>
+							<outline text="重用父类的代码"></outline>
+							<outline text="执行顺序">
+								<outline text="调用C3继承树中上一级类"></outline>
+							</outline>
+						</outline>
+						<outline text="django rest framework中对多继承使用的经验">
+							<outline text="java继承一个类 多个接口"></outline>
+							<outline text="mixin类混合模式">
+								<outline text="特点">
+									<outline text="功能单一，只有一个方法"></outline>
+									<outline text="不和基类关联，可以和任意基类组合，基类不和mixin关联就能初始化成功"></outline>
+									<outline text="mixin中不要用super方法">
+										<outline text="避免mro"></outline>
+									</outline>
+								</outline>
+								<outline text="默认命名规则： 以mixin结尾"></outline>
+							</outline>
+						</outline>
+						<outline text="上下文管理器 协议(魔法函数)">
+							<outline text="概念">
+								<outline text="定义一个类，包含两个魔法函数">
+									<outline text="__enter__">
+										<outline text="获取资源"></outline>
+									</outline>
+									<outline text="__exit__">
+										<outline text="释放资源"></outline>
+									</outline>
+								</outline>
+								<outline text="用于with语句"></outline>
+							</outline>
+							<outline text="with语句">
+								<outline text="try语句">
+									<outline text="try:
+    raise KeyError"></outline>
+									<outline text="except KeyError as e:">
+										<outline text="捕获异常"></outline>
+									</outline>
+									<outline text="else:">
+										<outline text="没有异常"></outline>
+									</outline>
+									<outline text="finally: ">
+										<outline text="无论有没有错误都会运行"></outline>
+										<outline text="一般用于资源释放"></outline>
+									</outline>
+									<outline text="return 执行顺序">
+										<outline text="优先考虑finally中的return"></outline>
+										<outline text="放入堆栈 最后return数据"></outline>
+									</outline>
+								</outline>
+								<outline text="with是为了简化try语句"></outline>
+								<outline text="with ClassName as objName:"></outline>
+							</outline>
+							<outline text="contextlib (高级with)">
+								<outline text="import contextlib"></outline>
+								<outline text="@contextlib.contextmanager">
+									<outline text="修饰的函数必须是个生成器"></outline>
+									<outline text="return==&gt;yield">
+										<outline text="yield 空"></outline>
+										<outline text="yield 任意值"></outline>
+									</outline>
+									<outline text="__enter__获取资源的部分放到yield之前"></outline>
+									<outline text="__exit__释放资源的部分放到yield之后"></outline>
+								</outline>
+								<outline text="执行顺序">
+									<outline text="yield 之前"></outline>
+									<outline text="with语句内容"></outline>
+									<outline text="yield 之后"></outline>
+								</outline>
+							</outline>
+						</outline>
 					</outline>
 					<outline text="自定义序列类">
 						<outline text="序列类型的分类">
 							<outline text="容器序列">
 								<outline text="list、tuple、deque"></outline>
+								<outline text="可以存放任意不同类型的元素"></outline>
 							</outline>
 							<outline text="扁平序列">
 								<outline text="str、bytes、bytearray、array.array"></outline>
+								<outline text="只能存放单一类型"></outline>
 							</outline>
 							<outline text="可变序列">
 								<outline text="list， deque，bytearray、array"></outline>
@@ -1235,13 +1451,146 @@ xor__ ^"></outline>
 								<outline text="str、tuple、bytes"></outline>
 							</outline>
 						</outline>
-						<outline text="序列的abc继承关系"></outline>
-						<outline text="序列的+、+=和extend的区别"></outline>
-						<outline text="实现可切片的对象"></outline>
-						<outline text="bisect管理可排序序列"></outline>
-						<outline text="什么时候我们不该用列表"></outline>
-						<outline text="列表推导式、生成器表达式、字典推导式"></outline>
-						<outline text="本章小结"></outline>
+						<outline text="序列的abc继承关系">
+							<outline text="from collections import abc"></outline>
+							<outline text="继承自父类">
+								<outline text="Reversible"></outline>
+								<outline text="Collection">
+									<outline text="Sized">
+										<outline text="__len__"></outline>
+									</outline>
+									<outline text="Iterable">
+										<outline text="__iter__"></outline>
+									</outline>
+									<outline text="Container">
+										<outline text="__contains__">
+											<outline text="实现if in判断
+__getitem__"></outline>
+										</outline>
+									</outline>
+								</outline>
+								<outline text="__setitem__"></outline>
+								<outline text="__delitem__"></outline>
+								<outline text="append、extend、pop、insert"></outline>
+							</outline>
+						</outline>
+						<outline text="序列的+、+=和extend的区别">
+							<outline text="+"></outline>
+							<outline text="+=">
+								<outline text="list+=tuple 可行， 但list+tuple不可"></outline>
+								<outline text="__iadd__">
+									<outline text="extend方法中实现for循环挨个append"></outline>
+								</outline>
+							</outline>
+							<outline text="a.extend(range(3))">
+								<outline text="extend没有返回值，直接在原值上修改"></outline>
+							</outline>
+							<outline text="a.append()">
+								<outline text="没有for循环，整体作为值"></outline>
+							</outline>
+						</outline>
+						<outline text="实现可切片的对象">
+							<outline text="模式[start:end:step]">
+								<outline text="start默认为0"></outline>
+								<outline text="end默认为列表长度"></outline>
+								<outline text="step表示步长，默认为1"></outline>
+							</outline>
+							<outline text="返回新列表"></outline>
+							<outline text="例子">
+								<outline text="a[::-1]">
+									<outline text="反序列"></outline>
+								</outline>
+								<outline text="a[len(a):]=[9]">
+									<outline text="尾部增加元素"></outline>
+								</outline>
+								<outline text="a[:0]=[1,2]">
+									<outline text="头部插入元素"></outline>
+									<outline text="a=[1,2]+a"></outline>
+								</outline>
+								<outline text="a[3:3]=[4]">
+									<outline text="中间插入"></outline>
+								</outline>
+								<outline text="a[3:]=[4,5,6]">
+									<outline text="替换"></outline>
+									<outline text="等号两边长度可以不相等"></outline>
+								</outline>
+								<outline text="a[::2]=[0]*3">
+									<outline text="隔一个修改一个"></outline>
+									<outline text="等号两边长度必须一样"></outline>
+								</outline>
+								<outline text="a[:3]=[]">
+									<outline text="删除前3个元素"></outline>
+								</outline>
+								<outline text="del a[:3]">
+									<outline text="删除连续元素"></outline>
+								</outline>
+								<outline text="del a[::2]">
+									<outline text="隔一个删一个"></outline>
+								</outline>
+							</outline>
+							<outline text="不可修改的类的实现方法">
+								<outline text="__getitem__(self, item):
+return self.staff[item]">
+									<outline text="实现切片的关键"></outline>
+									<outline text="返回的是列表"></outline>
+									<outline text="item是个slice对象"></outline>
+									<outline text="高级">
+										<outline text="cls=type(self)"></outline>
+										<outline text="if isinstance(item,slice):
+    return cls(args, staf[item])"></outline>
+										<outline text="elif isinstance(item, numbers.Integral):
+    return cls(args,[ staf[item]])"></outline>
+									</outline>
+								</outline>
+								<outline text="__reversed__()"></outline>
+								<outline text="__len__()"></outline>
+								<outline text="__iter__()"></outline>
+								<outline text="__contains__()"></outline>
+							</outline>
+						</outline>
+						<outline text="bisect管理可排序序列">
+							<outline text="类比 from collections import deque"></outline>
+							<outline text="二分法"></outline>
+							<outline text="处理已排序的可修改序列"></outline>
+							<outline text="bisect.insort(list, element)
+返回排序好的序列"></outline>
+							<outline text="bisect.bisect(list, element)">
+								<outline text="bisect是bisect_right的默认方法"></outline>
+								<outline text="bisect_right"></outline>
+							</outline>
+						</outline>
+						<outline text="什么时候我们不该用列表">
+							<outline text="array">
+								<outline text="array 数组： 连续的内存空间"></outline>
+								<outline text="import array"></outline>
+								<outline text="array 只能存放指定的类型"></outline>
+								<outline text="array.array(&quot;i&quot;)"></outline>
+								<outline text="性能高"></outline>
+							</outline>
+							<outline text=" deque"></outline>
+						</outline>
+						<outline text="列表推导式、生成器表达式、字典推导式">
+							<outline text="列表推导式/生成式">
+								<outline text="提取出奇数">
+									<outline text="[ i for i in range(21) if i%2 == 1]"></outline>
+								</outline>
+								<outline text="逻辑复杂的情况: 定义函数">
+									<outline text="[ func(i) for i in range(21) if i%2 == 1]"></outline>
+								</outline>
+								<outline text="性能高于列表操作"></outline>
+							</outline>
+							<outline text="生成器表达式">
+								<outline text="(i for i in range(21) if i%2 == 1)"></outline>
+								<outline text="list(生成器)"></outline>
+							</outline>
+							<outline text="字典推导式">
+								<outline text="{value:key for key,value in dict}"></outline>
+							</outline>
+							<outline text="集合推导式">
+								<outline text="{key for key,value in dict}"></outline>
+								<outline text="set(dict.keys())"></outline>
+							</outline>
+						</outline>
 					</outline>
 					<outline text="深入python的set和dict">
 						<outline text="先来看看collections中的abc"></outline>
@@ -1257,14 +1606,40 @@ xor__ ^"></outline>
 						</outline>
 						<outline text="set和frozenset"></outline>
 						<outline text="dict和set实现原理"></outline>
-						<outline text="本章小结"></outline>
 					</outline>
 					<outline text="对象引用、可变性和垃圾回收">
-						<outline text="python变量到底是什么"></outline>
-						<outline text="==和is的区别"></outline>
-						<outline text="del语句和垃圾回收"></outline>
-						<outline text="一个经典的错误"></outline>
-						<outline text="本章小结"></outline>
+						<outline text="python变量到底是什么">
+							<outline text="本质不同">
+								<outline text="java">
+									<outline text="容器"></outline>
+								</outline>
+								<outline text="python">
+									<outline text="指针"></outline>
+									<outline text="大小固定"></outline>
+									<outline text="先生成对象，再指向指针"></outline>
+									<outline text="id()"></outline>
+								</outline>
+							</outline>
+						</outline>
+						<outline text="==和is的区别">
+							<outline text="值判断"></outline>
+							<outline text="id判断"></outline>
+						</outline>
+						<outline text="del语句和垃圾回收">
+							<outline text="垃圾回收采用引用计数"></outline>
+							<outline text="del 计数器减一"></outline>
+							<outline text="计数器为零才回收"></outline>
+							<outline text="回收时会执行__del__"></outline>
+						</outline>
+						<outline text="一个经典的错误">
+							<outline text="参数传递">
+								<outline text="不可变的尽量用tuple"></outline>
+								<outline text="对象方法的默认参数[ ]互相影响">
+									<outline text="共用对象"></outline>
+									<outline text="className.__init__.__defaults__"></outline>
+								</outline>
+							</outline>
+						</outline>
 					</outline>
 					<outline text="元类编程">
 						<outline text="property动态属性"></outline>
@@ -1273,28 +1648,125 @@ xor__ ^"></outline>
 						<outline text="__new__和__init__的区别"></outline>
 						<outline text="自定义元类"></outline>
 						<outline text="元类实现简单的orm"></outline>
-						<outline text="本章小结"></outline>
 					</outline>
 					<outline text="迭代器和生成器">
 						<outline text="迭代器">
 							<outline text="概念">
 								<outline text="访问集合内元素的一种方式，一般用来遍历数据"></outline>
 								<outline text="与list以下标访问的方式不同, []  list   __iter__"></outline>
-								<outline text="迭代器不能返回"></outline>
+								<outline text="迭代器不能返回">
+									<outline text="只能一条一条访问"></outline>
+								</outline>
 								<outline text="惰性访问方式"></outline>
 							</outline>
 							<outline text="迭代协议">
-								<outline text="from collections.abc import Iterable, Iterator"></outline>
-								<outline text="class Iterable (metaclass=ABCMeta)"></outline>
+								<outline text="from collections.abc import Iterable, Iterator">
+									<outline text="__next__"></outline>
+									<outline text="__iter__"></outline>
+								</outline>
+								<outline text="可迭代类型+Iterator"></outline>
+							</outline>
+							<outline text="可迭代对象">
+								<outline text="设计模式">
+									<outline text="分两个类来实现"></outline>
+								</outline>
+								<outline text="iter()">
+									<outline text="先__iter__">
+										<outline text="一定要返回迭代器"></outline>
+									</outline>
+									<outline text="后通过__getitem__生成迭代器"></outline>
+								</outline>
+								<outline text="自定义迭代器">
+									<outline text="from collections import Iterator"></outline>
+									<outline text="class MyIterator(Iterator):"></outline>
+									<outline text="__init__(self, list):">
+										<outline text="self.index=0"></outline>
+									</outline>
+									<outline text="__next__()">
+										<outline text="真正返回逻辑迭代值"></outline>
+										<outline text="try:
+    word = return self.list[self.index]
+except IndexError:
+    raise StopIteration
+self.index+=1
+return word"></outline>
+									</outline>
+									<outline text="用法">
+										<outline text="next(ClassName)调用"></outline>
+										<outline text="except StopIteration:"></outline>
+									</outline>
+								</outline>
 							</outline>
 						</outline>
-						<outline text="python的迭代协议"></outline>
-						<outline text="什么是迭代器和可迭代对象"></outline>
-						<outline text="生成器函数使用"></outline>
-						<outline text="生成器的原理"></outline>
-						<outline text="通过UserList来看生成器的应用"></outline>
-						<outline text="生成器实现大文件读取"></outline>
-						<outline text="本章小结"></outline>
+						<outline text="生成器">
+							<outline text="生成器函数使用">
+								<outline text="函数里面只要有yield就是生成器函数"></outline>
+								<outline text="python编译字节码产生生成器对象"></outline>
+								<outline text="可以yield多个值">
+									<outline text="惰性求值/延迟求值"></outline>
+									<outline text="类比return"></outline>
+								</outline>
+								<outline text="可以yield过程值"></outline>
+								<outline text="也可以return值"></outline>
+							</outline>
+							<outline text="生成器的原理">
+								<outline text="函数的工作原理">
+									<outline text="python.exe解释器，c语言写的"></outline>
+									<outline text="用PyEval_EvalFramEx(c函数)去执行用户函数"></outline>
+									<outline text="首先会创建一个栈帧(stack_frame)"></outline>
+									<outline text="栈帧也是对象，在栈帧上下文中运行字节码对象">
+										<outline text="import dis
+dis.dis(func)"></outline>
+									</outline>
+									<outline text="当函数A调用子函数B的时候，又会创建一个栈帧"></outline>
+									<outline text="所有的栈帧都分配在堆内存上，而不是栈的位置">
+										<outline text="堆内存中不主动释放会一直存在"></outline>
+										<outline text="决定了栈帧可以独立于调用者存在"></outline>
+										<outline text="类比静态语言">
+											<outline text="存放在栈内存上"></outline>
+											<outline text="调用完成之后摧毁"></outline>
+										</outline>
+									</outline>
+									<outline text="import inspect">
+										<outline text="inspect.currentframe()"></outline>
+										<outline text="f_back"></outline>
+										<outline text="f_code"></outline>
+									</outline>
+								</outline>
+								<outline text="生成器对象">
+									<outline text="对frame做封装"></outline>
+									<outline text="yield 位置标记"></outline>
+									<outline text="PyGenObject">
+										<outline text="gi_frame: PyFrameObject">
+											<outline text="f_lasti 记录yield位置"></outline>
+											<outline text="f_locals 记录yield位置的局部变量"></outline>
+										</outline>
+										<outline text="gi_code: PyCodeObject"></outline>
+									</outline>
+								</outline>
+								<outline text="协程概念的基础"></outline>
+							</outline>
+						</outline>
+						<outline text="通过UserList来看生成器的应用">
+							<outline text="from collectios import UserList"></outline>
+							<outline text="可覆盖内部函数"></outline>
+							<outline text="__iter__() 生成器"></outline>
+						</outline>
+						<outline text="生成器实现大文件读取">
+							<outline text="f=open()
+f.read(4096)">
+								<outline text="4096依次读取的偏移量"></outline>
+							</outline>
+							<outline text="文件结尾">
+								<outline text="否: 判断换行符位置index()">
+									<outline text="yield buf[:pos]"></outline>
+									<outline text="buf = [pos+len():]"></outline>
+								</outline>
+								<outline text="是: yield所有"></outline>
+							</outline>
+						</outline>
+						<outline text="yield from"></outline>
+						<outline text="send"></outline>
 					</outline>
 					<outline text="socket编程">
 						<outline text="基础">
@@ -1335,27 +1807,112 @@ xor__ ^"></outline>
 							<outline text="server">
 								<outline text="随时监听的状态"></outline>
 								<outline text="流程">
-									<outline text="socket"></outline>
-									<outline text="bind(协议，ip，端口)"></outline>
-									<outline text="listen(客户端连接请求)"></outline>
-									<outline text="accept: 阻塞等待连接请求(新套接字)"></outline>
-									<outline text="recv"></outline>
-									<outline text="send"></outline>
-									<outline text="close"></outline>
+									<outline text="socket">
+										<outline text="import socket"></outline>
+									</outline>
+									<outline text="bind(协议，ip，端口)">
+										<outline text="概念">
+											<outline text="绑定ip 和 端口"></outline>
+											<outline text="一个程序占用一个端口"></outline>
+											<outline text="根据端口来识别服务"></outline>
+										</outline>
+										<outline text="server=socket.socket(socket.AF_INET, socket.STREAM)">
+											<outline text="协议IPv4"></outline>
+											<outline text="类型TCP
+DGRAM: UDP"></outline>
+										</outline>
+										<outline text="server.bind((&quot;0.0.0.0&quot;,8000))"></outline>
+									</outline>
+									<outline text="listen(客户端连接请求)">
+										<outline text="server.listen"></outline>
+									</outline>
+									<outline text="accept: 阻塞等待连接请求(新套接字)">
+										<outline text="sock,addr = server.accept()"></outline>
+										<outline text="放置在循环外的话只能接受一个连接请求"></outline>
+										<outline text="放置在循环中，然后用多个线程实现多用户连接"></outline>
+									</outline>
+									<outline text="多线程多用户连接">
+										<outline text="import threading"></outline>
+										<outline text="def handle_sock(sock,addr):">
+											<outline text="recv"></outline>
+											<outline text="send"></outline>
+										</outline>
+										<outline text="sock,addr = server.accept()"></outline>
+										<outline text="用线程处理新接受的连接">
+											<outline text="client_thread=threading.Thread(target=handle_sock, args=(sock,addr) )"></outline>
+											<outline text="client_thread.start()"></outline>
+										</outline>
+									</outline>
+									<outline text="recv">
+										<outline text="获取1k数据">
+											<outline text="data=sock.recv(1024)"></outline>
+											<outline text="print(data.decode(&quot;utf8&quot;))"></outline>
+										</outline>
+									</outline>
+									<outline text="send">
+										<outline text="发送处理之后的数据">
+											<outline text="sock.send(&quot;hello&quot;.encode(&quot;utf8&quot;))"></outline>
+											<outline text="交互式输入 input"></outline>
+											<outline text="send 只能处理byte类型"></outline>
+										</outline>
+									</outline>
+									<outline text="close">
+										<outline text="server.close()"></outline>
+										<outline text="sock.close()"></outline>
+									</outline>
 								</outline>
+								<outline text="服务器端"></outline>
+								<outline text="web框架不负责socket通信"></outline>
 							</outline>
 							<outline text="client">
 								<outline text="流程">
-									<outline text="socket"></outline>
-									<outline text="connect"></outline>
-									<outline text="send"></outline>
-									<outline text="recv"></outline>
-									<outline text="close"></outline>
+									<outline text="socket">
+										<outline text="import socket"></outline>
+										<outline text="client=socket.socket(socket.AF_INET, socket.STREAM)"></outline>
+									</outline>
+									<outline text="connect">
+										<outline text="client.connect((&quot;127.0.0.1&quot;,8000))"></outline>
+									</outline>
+									<outline text="send">
+										<outline text="client.send(&quot;body&quot;.encode(&quot;utf8&quot;))"></outline>
+									</outline>
+									<outline text="recv">
+										<outline text="data=client.recv(1024)"></outline>
+										<outline text="print(data.decode(&quot;utf8&quot;))"></outline>
+									</outline>
+									<outline text="close">
+										<outline text="client.close()"></outline>
+									</outline>
 								</outline>
+								<outline text="软件/浏览器"></outline>
+								<outline text="爬虫: 典型例子"></outline>
 							</outline>
 							<outline text="C/S通信">
 								<outline text="socket发送http请求">
 									<outline text="写类模拟urllib类"></outline>
+									<outline text="socket是基础: requests -&gt; urllib -&gt; socket">
+										<outline text="网络底层"></outline>
+										<outline text="网络请求"></outline>
+										<outline text="数据库连接"></outline>
+									</outline>
+									<outline text="步骤">
+										<outline text="from urllib.parse import urlParse"></outline>
+										<outline text="url=urlParse(url)"></outline>
+										<outline text="host=url.netloc"></outline>
+										<outline text="path = url.path">
+											<outline text="path 不为空，改成&quot;/&quot;"></outline>
+										</outline>
+										<outline text="client=socket.socket(socket.AF_INET, socket.STREAM)"></outline>
+										<outline text="client.connect((host,8000))"></outline>
+										<outline text="client.send(f&quot;GET {path} HTTP/1.1 \r\nHost:{host}Connection:close\r\n\r\n&quot;.encode(&quot;utf8&quot;))">
+											<outline text="具体关键字看网站"></outline>
+										</outline>
+										<outline text="循环1k取数据client.recv(1024)">
+											<outline text="data.decode"></outline>
+											<outline text="data.split(&quot;\r\n\r\n&quot;)"></outline>
+										</outline>
+										<outline text="client.close()"></outline>
+									</outline>
 								</outline>
 								<outline text="urllib和socket区别">
 									<outline text="urllib支持client，但是socket支持server、client等等"></outline>
@@ -1363,9 +1920,8 @@ xor__ ^"></outline>
 									<outline text="学习socket的目的不是为了让大家在任何时候都用socket去编程，而是要知道底层后期理解协程容易、以及具体问题在解决的时候首先能想到还有socket底层可以用"></outline>
 								</outline>
 							</outline>
+							<outline text="异步IO和协程的基础"></outline>
 						</outline>
-						<outline text="10.3 socket实现聊天和多用户连接"></outline>
-						<outline text="10.4 socket模拟http请求"></outline>
 					</outline>
 					<outline text="多线程、多进程和线程池编程">
 						<outline text="python中的GIL"></outline>
