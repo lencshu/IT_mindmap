@@ -35,19 +35,19 @@ def main():
 
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
 
 
 
-# if __name__ == "__main__":
-#     my_gen = sales_sum("bobby牌手机")
-#     my_gen.send(None)
-#     my_gen.send(1200)
-#     my_gen.send(1500)
-#     my_gen.send(3000)
-#     try:
-#         my_gen.send(None)
-#     except StopIteration as e:
-#         result = e.value
-#         print(result)
+if __name__ == "__main__":
+    my_gen = sales_sum("bobby牌手机")
+    my_gen.send(None)
+    my_gen.send(1200)
+    my_gen.send(1500)
+    my_gen.send(3000)
+    try:
+        my_gen.send(None)
+    except StopIteration as e:
+        result = e.value
+        print(result)
