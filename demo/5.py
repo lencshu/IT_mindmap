@@ -3,6 +3,7 @@ def gen_func():
     print(html)
     yield 2
 
+
 if __name__=="__main__":
     gen=gen_func()
     url = next(gen)
@@ -10,3 +11,4 @@ if __name__=="__main__":
     gen.send('hhh')
 
     pass
+
