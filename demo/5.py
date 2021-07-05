@@ -1,3 +1,4 @@
+
 def gen_func():
     html=yield 'ggggg'
     print(html)
@@ -9,6 +10,5 @@ if __name__=="__main__":
     url = next(gen)
     print(url)
     gen.send('hhh')
-
     pass
 
